@@ -30,21 +30,13 @@ public class AdminController {
     }
 
     @PostMapping("/add")
-    public String addUser(@ModelAttribute User user,
-                          @RequestParam(required = false) Set<Long> roleIds) {
-        if (roleIds != null && !roleIds.isEmpty()) {
-            user.setRoles(roleService.getRolesByIds(roleIds));
-        }
+    public String addUser(@ModelAttribute User user) {
         userService.addUser(user);
         return "redirect:/admin";
     }
 
     @PostMapping("/update")
-    public String updateUser(@ModelAttribute User user,
-                             @RequestParam(required = false) Set<Long> roleIds) {
-        if (roleIds != null && !roleIds.isEmpty()) {
-            user.setRoles(roleService.getRolesByIds(roleIds));
-        }
+    public String updateUser(@ModelAttribute User user) {
         userService.updateUser(user);
         return "redirect:/admin";
     }
